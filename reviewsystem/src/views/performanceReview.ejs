@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Reviews</title>
+</head>
+<body>
+  <h1>Performance Reviews</h1>
+  <h2>List of Performance Reviews</h2>
+  <ul>
+    <% performanceReviews.forEach(review => { %>
+      <li>
+        <strong><%= review.title %></strong>
+        <p>Description: <%= review.description %></p>
+        <p>Participants: <%= review.participants.join(', ') %></p>
+        <a href="/performance-reviews/<%= review._id %>">View Details</a>
+      </li>
+    <% }) %>
+  </ul>
+  <h2>Add Performance Review</h2>
+  <form action="/performance-reviews/add" method="post">
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required><br>
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" required></textarea><br>
+    <label for="participants">Participants:</label>
+    <select id="participants" name="participants" multiple>
+      <% employees.forEach(employee => { %>
+        <option value="<%= employee._id %>"><%= employee.name %></option>
+      <% }) %>
+    </select><br>
+    <button type="submit">Add Performance Review</button>
+  </form>
+
+  <h2>Update Performance Review</h2>
+<form action="/performance-reviews/update/<%= selectedReview._id %>" method="post">
+  <label for="updateTitle">Title:</label>
+  <input type="text" id="updateTitle" name="updateTitle" value="<%= selectedReview.title %>" required><br>
+  <label for="updateDescription">Description:</label>
+  <textarea id="updateDescription" name="updateDescription" required><%= selectedReview.description %></textarea><br>
+  <label for="updateParticipants">Participants:</label>
+  <select id="updateParticipants" name="updateParticipants" multiple>
+    <% employees.forEach(employee => { %>
+      <option value="<%= employee._id %>" <% if(selectedReview.participants.includes(employee._id)) { %>selected<% } %>><%= employee.name %></option>
+    <% }) %>
+  </select><br>
+  <button type="submit">Update Performance Review</button>
+</form>
+<h2>View Performance Review</h2>
+<strong><%= selectedReview.title %></strong>
+<p>Description: <%= selectedReview.description %></p>
+<p>Participants: <%= selectedReview.participants.join(', ') %></p>
+</body>
+</html>

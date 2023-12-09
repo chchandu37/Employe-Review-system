@@ -1,0 +1,22 @@
+<!-- views/employees.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee List</title>
+</head>
+<body>
+  <h1>Employee List</h1>
+  <ul>
+    <% employees.forEach(employee => { %>
+      <li><%= employee.name %></li>
+    <% }) %>
+  </ul>
+  <form action="/employees/add" method="post">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+    <button type="submit">Add Employee</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Feedback</title>
+</head>
+<body>
+  <h1>Submit Feedback</h1>
+  <form action="/feedback/submit" method="post">
+    <input type="hidden" name="performanceReviewId" value="<%= performanceReview._id %>">
+    <label for="feedbackText">Feedback Text:</label>
+    <textarea id="feedbackText" name="feedbackText" required></textarea><br>
+    <button type="submit">Submit Feedback</button>
+  </form>
+</body>
+</html>
